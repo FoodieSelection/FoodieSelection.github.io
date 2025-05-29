@@ -233,6 +233,27 @@
       transform: translateY(-2px);
     }
 
+    .copy-email-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .copy-email-btn:hover {
+      text-decoration: underline;
+    }
+
+    .copy-msg {
+      margin-left: 10px;
+      color: #27ae60;
+      font-size: 0.95rem;
+    }
+
     .social-links {
       display: flex;
       justify-content: center;
@@ -288,7 +309,7 @@
       }
 
       .contact-links a {
-        width: 200px;
+        width: 240px;
         justify-content: center;
       }
     }
@@ -414,18 +435,46 @@
       <div class="footer-section">
         <h3>遺漏賽事? 歡迎與我們聯絡</h3>
         <div class="contact-links">
-          <a href="mailto:foodieselection@example.com">
+          <button id="copyEmailBtn" class="copy-email-btn">
             <span>📧</span>
-            foodieselection@example.com
-          </a>
+            <span id="emailText">foodieselectioninfo@gmail.com</span>
+          </button>
+          <span id="copyMsg" class="copy-msg" style="display:none;">已複製 email！ </span>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 吃貨精選 FoodieSelection. 版權所有 | 探索台灣美食競賽的最佳平台</p>
+        <p>&copy; 2025 吃貨精選 - Foodie Selection. 版權所有 | 探索台灣美食競賽的最佳平台</p>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('copyEmailBtn').addEventListener('click', function() {
+      const email = document.getElementById('emailText').innerText;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(function() {
+          showCopyMsg();
+        });
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopyMsg();
+      }
+    });
+
+    function showCopyMsg() {
+      const msg = document.getElementById('copyMsg');
+      msg.style.display = 'inline';
+      setTimeout(function() {
+        msg.style.display = 'none';
+      }, 1500);
+    }
+  </script>
 </body>
 
 </html>
