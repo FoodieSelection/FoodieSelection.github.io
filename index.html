@@ -41,6 +41,38 @@
       flex-direction: column;
     }
 
+    .site-logo {
+      width: 100%;
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      background: none;
+      /* 取消這裡的白色背景 */
+    }
+
+    .logo-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 50%;
+      width: 88px;
+      /* 圓圈直徑，可依需求調整 */
+      height: 88px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      /* 可選，增加立體感 */
+    }
+
+    .logo-circle img {
+      width: 64px;
+      /* logo 寬度 */
+      height: 64px;
+      /* logo 高度 */
+      object-fit: contain;
+      border-radius: 50%;
+      /* 若 logo 本身也要圓形 */
+    }
+
     /* Banner 樣式 */
     .banner {
       height: 300px;
@@ -339,6 +371,11 @@
   <!-- Banner區域 -->
   <div class="banner">
     <div class="banner-content">
+      <div class="site-logo">
+        <div class="logo-circle">
+          <img src="./logo512.png" alt="Logo">
+        </div>
+      </div>
       <h1>吃貨精選 - Foodie Selection</h1>
       <p>探索全台美食競賽，發現在地美味，品嚐競技精神</p>
     </div>
@@ -451,10 +488,10 @@
   </footer>
 
   <script>
-    document.getElementById('copyEmailBtn').addEventListener('click', function() {
+    document.getElementById('copyEmailBtn').addEventListener('click', function () {
       const email = document.getElementById('emailText').innerText;
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(email).then(function() {
+        navigator.clipboard.writeText(email).then(function () {
           showCopyMsg();
         });
       } else {
@@ -471,7 +508,7 @@
     function showCopyMsg() {
       const msg = document.getElementById('copyMsg');
       msg.style.display = 'inline';
-      setTimeout(function() {
+      setTimeout(function () {
         msg.style.display = 'none';
       }, 1500);
     }
