@@ -7,28 +7,32 @@
   <title>吃貨精選-Foodie Selection</title>
 
   <script type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "WebSite",
-	  "name": "吃貨精選-競賽篇",
-	  "url": "https://你的網站網址/",
-	  "description": "探索全台美食競賽，發現在地美味，品嚐競技精神",
-	  "inLanguage": "zh-Hant",
-	  "publisher": {
-		"@type": "foodieSelection",
-		"name": "吃貨精選",
-		"logo": {
-		  "@type": "ImageObject",
-		  "url": "https://你的網站網址/logo.png"
-		}
-	  },
-	  "potentialAction": {
-		"@type": "SearchAction",
-		"target": "https://你的網站網址/?s={search_term_string}",
-		"query-input": "required name=search_term_string"
-	  }
-	}
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "吃貨精選-Foodie Selection",
+      "url": "https://foodie.selection.com.tw/",
+      "description": "探索全台美食競賽，發現在地美味，品嚐競技精神",
+      "publisher": {
+        "@type": "Organization",
+        "name": "吃貨精選-Foodie Selection",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://foodie.selection.com.tw/logo512.png"
+        }
+      }
+    }
   </script>
+  <meta property="og:title" content="吃貨精選-Foodie Selection">
+  <meta property="og:description" content="探索全台美食競賽，發現在地美味，品嚐競技精神">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://foodie.selection.com.tw/" >
+  <meta property="og:image" content="https://foodie.selection.com.tw/logo512.png">
+  <meta property="og:site_name" content="吃貨精選-Foodie Selection">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="吃貨精選-Foodie Selection">
+  <meta name="twitter:description" content="探索全台美食競賽，發現在地美味，品嚐競技精神">
+  <meta name="twitter:image" content="https://foodie.selection.com.tw/logo512.png">
 
   <style>
     body {
@@ -47,7 +51,6 @@
       margin-top: 18px;
       margin-bottom: 8px;
       background: none;
-      /* 取消這裡的白色背景 */
     }
 
     .logo-circle {
@@ -57,23 +60,17 @@
       background: #fff;
       border-radius: 50%;
       width: 88px;
-      /* 圓圈直徑，可依需求調整 */
       height: 88px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      /* 可選，增加立體感 */
     }
 
     .logo-circle img {
       width: 64px;
-      /* logo 寬度 */
       height: 64px;
-      /* logo 高度 */
       object-fit: contain;
       border-radius: 50%;
-      /* 若 logo 本身也要圓形 */
     }
 
-    /* Banner 樣式 */
     .banner {
       height: 300px;
       background: linear-gradient(135deg, rgba(255, 218, 68, 0.9), rgba(255, 165, 0, 0.8)),
@@ -122,17 +119,6 @@
       line-height: 1.6;
     }
 
-    /* 原有的header調整 */
-    header {
-      text-align: center;
-      padding: 1.5rem 0 1rem 0;
-      background: #ffda44;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
     .main-container {
       max-width: 1200px;
       margin: 2rem auto;
@@ -146,7 +132,6 @@
       margin: 0;
     }
 
-    /* 縣市列表 */
     .city-list {
       display: flex;
       flex-wrap: wrap;
@@ -199,7 +184,6 @@
       color: #b8860b;
     }
 
-    /* 背景圖層 */
     .city-bg {
       position: absolute;
       inset: 0;
@@ -214,7 +198,6 @@
       opacity: 0.32;
     }
 
-    /* Footer 樣式 */
     footer {
       background: #333;
       color: white;
@@ -321,10 +304,9 @@
       font-size: 0.9rem;
     }
 
-    /* RWD調整 */
     @media (max-width: 768px) {
       .banner {
-        height: 250px;
+        height: 350px;
       }
 
       .banner h1 {
@@ -344,11 +326,20 @@
         width: 240px;
         justify-content: center;
       }
+
+      .city-list li {
+        min-height: 90px;
+        height: 100px;
+      }
+
+      .city-list {
+        gap: 0.5rem;
+      }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 360px) {
       .banner {
-        height: 200px;
+        height: 360px;
       }
 
       .banner h1 {
@@ -368,7 +359,6 @@
 </head>
 
 <body>
-  <!-- Banner區域 -->
   <div class="banner">
     <div class="banner-content">
       <div class="site-logo">
@@ -380,8 +370,6 @@
       <p>探索全台美食競賽，發現在地美味，品嚐競技精神</p>
     </div>
   </div>
-
-  <header>競賽篇</header>
 
   <div class="main-container">
     <ul class="city-list">
@@ -466,11 +454,10 @@
     </ul>
   </div>
 
-  <!-- Footer區域 -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>遺漏賽事? 歡迎與我們聯絡</h3>
+        <h3>遺漏賽事? 任何問題? 歡迎與我們聯絡</h3>
         <h3>資料錯誤過時?! 一定要與我們聯絡!</h3>
         <div class="contact-links">
           <button id="copyEmailBtn" class="copy-email-btn">
