@@ -25,7 +25,8 @@
   <meta property="og:title" content="吃貨精選-Foodie Selection-新北市夜市王">
   <meta property="og:description" content="收錄新北市夜市王美食賽事與排行，探索樂華夜市等精選活動，帶你發現新北市在地美味。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://foodie.selection.com.tw/new-taipei/the-king-of-night-market/the-king-of-night-market.html">
+  <meta property="og:url"
+    content="https://foodie.selection.com.tw/new-taipei/the-king-of-night-market/the-king-of-night-market.html">
   <meta property="og:image" content="https://foodie.selection.com.tw/logo512.png">
   <meta property="og:site_name" content="吃貨精選-Foodie Selection">
   <meta name="twitter:card" content="summary_large_image">
@@ -131,26 +132,19 @@
     }
 
     .image-link {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
       width: 100%;
-      height: 0;
-      padding-bottom: 75%;
-      /* 4:3比例 */
-      background: #eee;
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px 10px 0 0;
     }
 
     .image-link img {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
+      aspect-ratio: 4/3;
       object-fit: cover;
-      display: block;
-      background: #e0e0e0;
+      border-radius: 10px 10px 0 0;
     }
 
     .image-caption {
@@ -192,8 +186,8 @@
       <div class="image-item">
         <a class="image-link" href="./lehua-night-market.html">
           <img src="./lehua-night-market.png" alt="尚未獲得圖片授權">
+          <div class="image-caption">樂華夜市</div>
         </a>
-        <div class="image-caption">樂華夜市</div>
       </div>
     </section>
   </main>
