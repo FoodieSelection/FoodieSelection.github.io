@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>吃貨精選-Foodie Selection-全國-500盤-2024</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "吃貨精選-Foodie Selection-2024年度全國500盤",
+      "description": "收錄2024年度全台美食精選500盤，帶你發現台灣在地美味。",
+      "url": "https://foodie.selection.com.tw/nationwide/500dishes/2024-500dishes.html",
+      "isPartOf": {
+        "@type": "CollectionPage",
+        "name": "吃貨精選-Foodie Selection-全國美食500盤",
+        "url": "https://foodie.selection.com.tw/nationwide/500dishes/500dishes.html"
+      }
+    }
+  </script>
+  <meta name="description" content="收錄2024年度全台美食精選500盤，帶你發現台灣在地美味。">
+  <meta property="og:title" content="吃貨精選-Foodie Selection-2024年度全國500盤">
+  <meta property="og:description" content="收錄2024年度全台美食精選500盤，帶你發現台灣在地美味。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://foodie.selection.com.tw/nationwide/500dishes/2024-500dishes.html">
+  <meta property="og:image" content="https://foodie.selection.com.tw/logo512.png">
+  <meta property="og:site_name" content="吃貨精選-Foodie Selection">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="吃貨精選-Foodie Selection-2024年度全國500盤">
+  <meta name="twitter:description" content="收錄2024年度全台美食精選500盤，帶你發現台灣在地美味。">
+  <meta name="twitter:image" content="https://foodie.selection.com.tw/logo512.png">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", Arial, sans-serif;
+      background: #d66616;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background: #d66616;
+      box-shadow: 0 2px 8px #0001;
+      padding: 0 1rem;
+      height: 64px;
+    }
+
+    .header-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: 1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fffbe6;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .header-btn:hover {
+      background: #ffe066;
+    }
+
+    .header-btn img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-title {
+      flex: 1;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #fff;
+      user-select: none;
+    }
+
+    .header-btn-placeholder {
+      width: 44px;
+      height: 44px;
+      margin-left: 1rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .restaurant-list {
+      max-width: 800px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .restaurant {
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      background: #fffbe6;
+      box-shadow: 0 2px 8px #0001;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .restaurant-info {
+      padding: 1rem 1rem 0.7rem 1rem;
+      cursor: pointer;
+      background: #fffbe6;
+      border-bottom: 1px solid #ffd699;
+      outline: none;
+      user-select: none;
+    }
+
+    .info-row1 {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d66616;
+      margin-bottom: 0.2em;
+    }
+
+    .name-text {
+      flex: 1;
+      text-align: left;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .info-row2 {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.5em;
+      padding-left: 0.1em;
+      word-break: break-all;
+    }
+
+    .info-row3 {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      margin-bottom: 0.1em;
+    }
+
+    .info-btn {
+      display: inline-block;
+      background: #d66616;
+      color: #fff;
+      border-radius: 5px;
+      padding: 0.3em 1em;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .info-btn:hover,
+    .info-btn:focus {
+      background: #ff8c1a;
+    }
+
+    .dropdown-icon {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.6, 0, 0.4, 1);
+    }
+
+    .restaurant.open .dropdown-icon {
+      transform: rotate(180deg);
+    }
+
+    .menu-list {
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      margin: 0;
+      padding: 0 1rem;
+      list-style: none;
+      transition: max-height 0.35s cubic-bezier(0.6, 0, 0.4, 1), padding 0.25s;
+    }
+
+    .restaurant.open .menu-list {
+      max-height: 2000px;
+      padding: 0.8rem 1rem 1rem 1.5rem;
+    }
+
+    .menu-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ffe066;
+      font-size: 1.05rem;
+      color: #444;
+    }
+
+    .menu-list li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 600px) {
+      .header-title {
+        flex: 1;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #fff;
+        user-select: none;
+      }
+
+      .restaurant-list {
+        max-width: 100%;
+        padding: 0 0.2rem;
+      }
+
+      .restaurant-info {
+        padding: 0.8rem 0.7rem 0.5rem 0.7rem;
+      }
+
+      .info-row1 {
+        font-size: 1rem;
+      }
+
+      .info-row2 {
+        font-size: 0.92rem;
+      }
+
+      .info-btn {
+        font-size: 0.92rem;
+        padding: 0.23em 0.8em;
+      }
+
+      .dropdown-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="header-btn" href="../../../index.html">
+      <img src="../../../logo128.png" alt="回首頁">
+    </a>
+    <div class="header-title">2024全國500盤</div>
+    <div class="header-btn-placeholder"></div>
+  </header>
+  <main>
+    <section class="restaurant-list">
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">晶華軒 Silks House</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區中山北路二段39巷3號3樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/RcyyZu9cmmkmzSJH6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642996dcda3790bf3cb0226c" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>松茸竹笙燉花膠</li>
+          <li>生拆泥鯭粥</li>
+          <li>八寶冬瓜盅</li>
+          <li>豬腳薑醋</li>
+          <li>老香港咖哩蟹</li>
+          <li>蜜汁叉燒</li>
+          <li>鱈蟹西施泡飯</li>
+          <li>梅菜松阪肉蒸圓茄</li>
+          <li>龍蝦馬蹄蒸肉餅</li>
+          <li>油浸筍殼魚</li>
+          <li>生拆蟹膏麻婆豆腐</li>
+          <li>港式麻香蔥油餅</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">鄒記食舖</span>
+          </div>
+          <div class="info-row2">
+            台北市松山區復興北路313巷43號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/w7pW6acHTFGeTnE9A" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6450eeb658bede739e185bd1" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>花雕黃豆醬燒元蹄</li>
+          <li>剁椒豬腳</li>
+          <li>煙燻圓鱈</li>
+          <li>花椒神仙雞</li>
+          <li>烏參燴花膠東坡肉</li>
+          <li>牛奶紅棗銀耳湯</li>
+          <li>薺菜春捲</li>
+          <li>麻辣牛舌</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Restaurant A</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區忠孝東路三段282號四樓新光三越Diamond Towers 二館4樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/crekXAb8UAhz8DxGA" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/67d4541676512912f6702bbe" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>魚子醬玉米金杯</li>
+          <li>白的點線面</li>
+          <li>刺山奶油青花焗白蘆筍</li>
+          <li>酸模鮭魚</li>
+          <li>桂花海膽芙蓉盅</li>
+          <li>奇幻的盎格魯餐桌：英式早餐</li>
+          <li>白酒松露燴犢牛</li>
+          <li>皙澈(釋迦/萊姆蘆薈/伏特加)</li>
+          <li>軟木塞</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">NOBUO</span>
+          </div>
+          <div class="info-row2">
+            台北市中正區泰安街8號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/EbNR51k4LpATs9189" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/67d455e576512912f6702ef6" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>李氏咖哩</li>
+          <li>蕎麥鰆魚</li>
+          <li>帆立貝</li>
+          <li>南島羊里肌/百合根/血旺</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">COAST</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區中山北路二段39巷3號B2
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/KxvabBugrVPU1FRw9" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642a25dea99b7dfe5fea3228" target="_blank"
+              rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>龍蝦炒飯</li>
+          <li>泰式奶茶</li>
+          <li>海鱺/蘋果瓜/岡頌</li>
+          <li>海膽義大利麵</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">RAW</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區樂群三路301號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/hCHcddkjTbQKy2Ly8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642692b429ba5eb673caca88" target="_blank"
+              rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>Memory 1997/經典黑松露鴨肝暖凍</li>
+          <li>爆漿麻婆豆卷</li>
+          <li>炙燒軟絲/煙燻魚子醬/藜麥茄泥</li>
+          <li>漢方：鴨肝麵茶/秋栗/印加果</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">fumée</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區中山北路二段39巷3號B3
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/7T5J3c4qH8j2msMD6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/683c5636484c300b0b90fa42" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>雞屁股</li>
+          <li>釜飯</li>
+          <li>雞翅</li>
+          <li>雞蠔</li>
+          <li>漬雞肉海苔捲</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">山海樓</span>
+          </div>
+          <div class="info-row2">
+            台北市中正區仁愛路二段94號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/JuyfEg4LrBj17Ujz7" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426f06a4452c39081ff104e" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>扁魚春捲</li>
+          <li>清粥小菜宴</li>
+          <li>山海珍寶魚</li>
+          <li>烏魚子炒飯</li>
+          <li>太平町玫瑰蝦</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">頤宮中餐廳 Le Palais</span>
+          </div>
+          <div class="info-row2">
+            台北市大同區承德路一段3號17樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/rdq5ecBtenHNZU1j7" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426755841ac6606be9985b4" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>米皇百合菜苗</li>
+          <li>紅燒乳鴿</li>
+          <li>春風得意腸</li>
+          <li>火焰片皮鴨</li>
+          <li>福州蔥油餅</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Ad astra</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區中山北路二段45巷23號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/ckoSsMNEWfXxbEwRA" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642a5c3ca99b7dfe5fea47e4" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>玫瑰鴨</li>
+          <li>海膽鬆餅</li>
+          <li>釜飯</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">鼎泰豐</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區信義路二段194號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/evydjphjCuaRrATS7" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642997c0da3790bf3cb0230b" target="_blank"
+              rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>元盅雞麵</li>
+          <li>松露小籠包</li>
+          <li>鮮肉粽子</li>
+          <li>紅油燃麵</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">海倫鮮土司施家粵菜</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區浦城街9-4號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/upKYDbHcZoHWYhZU9" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/683c58ae484c300b0b90fb11" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>馬友鹹魚蒸肉餅</li>
+          <li>懷舊陳皮牛肉</li>
+          <li>砂鍋雲吞雞</li>
+          <li>水磨芝麻糊</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">盈科EIKA</span>
+          </div>
+          <div class="info-row2">
+            台北市大同區民樂街58號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/qvcHzwEWBfE2aWkF6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/683c5d86484c300b0b90fc9d" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>烏骨雞粥</li>
+          <li>脆皮乳鴿潤餅</li>
+          <li>季節刺身</li>
+          <li>椀物</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">TUTTO BELLO</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區雙城街25巷15號1樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/qXdwx3EQkqstWGeG9" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/64299731da3790bf3cb022a8" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>乾煎日本黑鮑</li>
+          <li>螯蝦義大利麵</li>
+          <li>松露蘑菇卡布奇諾</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">JL STUDIO</span>
+          </div>
+          <div class="info-row2">
+            台中市南屯區益豐路四段689號2樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/nk9Mg95M5nRLidjAA" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/64266e37a1fdfecaa6707ef2" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>透抽 | 咖哩葉 | 參峇</li>
+          <li>咖哩餃</li>
+          <li>經典語錄：和牛/開心果/鳳梨/香茅</li>
+          <li>市場鮮魚 | 竹筍 | 茉莉香米</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">TIPSY Sparrow</span>
+          </div>
+          <div class="info-row2">
+            台北市信義區松仁路38號遠東百貨鼎泰豐對面
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/zg7UATFJBHzPApa49" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/683c59e7484c300b0b90fb74" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>炸全雞，鴨油薯條，鄉村肉汁</li>
+          <li>炭烤青甘魚下巴，參巴醬，四季豆</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">EMBERS</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區仁愛路四段122巷24號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/BDrqN9jA3JANWghY6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426f5ac29ba5eb673ce5e72" target="_blank"
+              rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>香鍋飯</li>
+          <li>ta'nas</li>
+          <li>麭薯薯</li>
+          <li>SEAESE CAKE</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">三六食府</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區師大路92巷13號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/ugsFgGTdWaN53mbb8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426ef2029ba5eb673ce212a" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>花膠火瞳砂鍋燉土雞</li>
+          <li>芝麻脆鱔</li>
+          <li>香酥芋泥鴨</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">牡丹．極上 天ぷら</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區四維路52巷17號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/oDQU8Z7ek8MxHWhE7" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6431c1427fbd1f46e450160f" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>魚翅Tempura</li>
+          <li>頂級本枯節/兵庫牡蠣椀盛</li>
+          <li>《牡丹食事》海老 海鮮針天丼</li>
+          <li>紫蘇包海膽</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">牛肆</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區吉林路422號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/NuEGDtwpxNo7xeqr8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/642a25fda99b7dfe5fea3241" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>上選溫體牛肉</li>
+          <li>牛肉爐</li>
+          <li>雜炊</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">金蓬萊遵古台菜</span>
+          </div>
+          <div class="info-row2">
+            台北市士林區天母東路101號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/ufhpfWnX9qeaUw9PA" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426ef3d29ba5eb673ce227c" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>蔥燒煨蔘海膽麵</li>
+          <li>蓬萊排骨酥</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">秀蘭小館</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區信義路二段198巷5-5號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/gnNZDUWcKoG3pRCt6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6429b8e2a99b7dfe5fea01f1" target="_blank"
+              rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>文武筍雞湯</li>
+          <li>白菜獅子頭</li>
+          <li>葱㸆鯽魚</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Adachi足立壽司</span>
+          </div>
+          <div class="info-row2">
+            台北市信義區莊敬路239巷12號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/5zp3MoMsGV7c77Rp8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6433d3fa2efe7e3896bded35" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>碳烤鰻魚</li>
+          <li>竹筴魚壽司</li>
+          <li>鮟鱇魚肝</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Ashin阿鑫小料理</span>
+          </div>
+          <div class="info-row2">
+            台北市松山區民權東路三段160巷19弄36號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/WATLuFo1jufKWuCD8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/64a138d571fa4517e090cf2a" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>鰻魚飯</li>
+          <li>上野雞肝</li>
+          <li>水果玉米</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">La Vie by Thomas Bühner</span>
+          </div>
+          <div class="info-row2">
+            台北市中山區樂群三路200號1樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/geFrEGcUpknygmzYA" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/64fcac4d0c460899e600fedf" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>熟成鴨 覆盆子 長胡椒</li>
+          <li>馬賽魚湯 干貝 海膽</li>
+          <li>乳酪鹹泡芙</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Curious Table(永久歇業)</span>
+          </div>
+          <div class="info-row2">
+            台北市中山北路二段39巷3號Regent Galleria B2
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/UazsyfRFHP5nEYkf8" target="_blank" rel="noopener">Google
+              Map</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>阿拉伯的勞倫斯</li>
+          <li>威靈頓</li>
+          <li>月球旅行記</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">Solo Pasta</span>
+          </div>
+          <div class="info-row2">
+            台北市大安區安和路一段29-1號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/76gNRKNC3L82JdFt6" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426f5ac29ba5eb673ce5ea8" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>後花園義大利麵</li>
+          <li>西班牙鐵鍋海鮮飯</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">富錦樹台菜香檳</span>
+          </div>
+          <div class="info-row2">
+            台北市松山區敦化北路199巷17號1樓
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/M4DZnfyXXNdF1UTY9" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426672fa1fdfecaa6703fe3" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>油淋蟹黃麻婆豆腐</li>
+          <li>剝皮辣椒滑蛋</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">華西街台南擔仔麵海鮮餐廳</span>
+          </div>
+          <div class="info-row2">
+            台北市萬華區青山里華西街31-1號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/hLaN5dbM56hzFV36A" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426db054452c39081fe88f0" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>清蒸紅魚</li>
+          <li>香酥鮮蝦卷</li>
+          <li>法式焗明蝦</li>
+        </ul>
+      </div>
+      <div class="restaurant">
+        <div class="restaurant-info" tabindex="0">
+          <div class="info-row1">
+            <span class="name-text">貓下去敦北俱樂部</span>
+          </div>
+          <div class="info-row2">
+            台北市松山區敦化北路218號
+          </div>
+          <div class="info-row3">
+            <a class="info-btn" href="https://maps.app.goo.gl/PWqVCnArLbKX7ofm8" target="_blank" rel="noopener">Google
+              Map</a>
+            <a class="info-btn" href="https://footinder.app/places/6426f4664452c39081ff289a" target="_blank" rel="noopener">Footinder</a>
+            <span class="dropdown-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22">
+                <polyline points="6,9 11,14 16,9" fill="none" stroke="#d66616" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <ul class="menu-list">
+          <li>鹹水雞沙拉</li>
+          <li>紅燒牛筋乾拌麵</li>
+          <li>冠軍薯條</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+
+<script>
+  document.querySelectorAll('.restaurant-info').forEach(function (info) {
+    info.addEventListener('click', function () {
+      var parent = info.closest('.restaurant');
+      parent.classList.toggle('open');
+    });
+    info.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var parent = info.closest('.restaurant');
+        parent.classList.toggle('open');
+      }
+    });
+  });
+</script>
+
+</html>
