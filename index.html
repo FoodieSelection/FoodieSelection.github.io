@@ -187,6 +187,119 @@
       margin: 0;
     }
 
+    .city-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: url('./button-bg.jpg');
+      background-repeat: no-repeat;
+      background-size: auto;
+      opacity: 0.18;
+      transition: opacity 0.2s;
+    }
+
+    .city-bg.nationwide {
+      background-position: -1282px -345px;
+    }
+
+    .city-bg.keelung {
+      background-position: -43px -564px;
+    }
+
+    .city-bg.taipei {
+      background-position: -660px -210px;
+    }
+
+    .city-bg.new-taipei {
+      background-position: -1160px -667px;
+    }
+
+    .city-bg.taoyuan {
+      background-position: -793px -812px;
+    }
+
+    .city-bg.hsinchu-city {
+      background-position: -480px -713px;
+    }
+
+    .city-bg.hsinchu-county {
+      background-position: -238px -296px;
+    }
+
+    .city-bg.miaoli {
+      background-position: -1755px -549px;
+    }
+
+    .city-bg.taichung {
+      background-position: -1348px -708px;
+    }
+
+    .city-bg.changhua {
+      background-position: -1506px -1050px;
+    }
+
+    .city-bg.nantou {
+      background-position: -571px -657px;
+    }
+
+    .city-bg.yunlin {
+      background-position: -1863px -698px;
+    }
+
+    .city-bg.chiayi-city {
+      background-position: -1727px -948px;
+    }
+
+    .city-bg.chiayi-county {
+      background-position: -1727px -773px;
+    }
+
+    .city-bg.tainan {
+      background-position: -558px -728px;
+    }
+
+    .city-bg.kaohsiung {
+      background-position: -1586px -790px;
+    }
+
+    .city-bg.pingtung {
+      background-position: -1780px -1059px;
+    }
+
+    .city-bg.yilan {
+      background-position: -968px -558px;
+    }
+
+    .city-bg.hualien {
+      background-position: -1517px -527px;
+    }
+
+    .city-bg.taitung {
+      background-position: -972px -281px;
+    }
+
+    .city-bg.penghu {
+      background-position: -942px -689px;
+    }
+
+    .city-bg.kinmen {
+      background-position: -22px -646px;
+    }
+
+    .city-bg.lianjiang {
+      background-position: -437px -281px;
+    }
+
+    .under-construction {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+
     .city-list {
       display: flex;
       flex-wrap: wrap;
@@ -201,8 +314,7 @@
       position: relative;
       overflow: hidden;
       min-width: 60px;
-      min-height: 120px;
-      height: 140px;
+      height: 120px;
       background: #fff;
       border-radius: 6px;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
@@ -235,16 +347,6 @@
     .city-list li a:hover {
       background: none;
       color: inherit;
-    }
-
-    .city-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.18;
-      transition: opacity 0.2s;
     }
 
     .city-list li:hover .city-bg {
@@ -357,39 +459,6 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      .banner {
-        height: 350px;
-      }
-
-      .banner h1 {
-        font-size: 2.5rem;
-      }
-
-      .banner p {
-        font-size: 1.1rem;
-      }
-
-      .contact-links {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .contact-links a {
-        width: 240px;
-        justify-content: center;
-      }
-
-      .city-list li {
-        min-height: 90px;
-        height: 100px;
-      }
-
-      .city-list {
-        gap: 0.5rem;
-      }
-    }
-
     @media (max-width: 360px) {
       .banner {
         height: 360px;
@@ -397,11 +466,6 @@
 
       .banner h1 {
         font-size: 2rem;
-      }
-
-      .city-list li {
-        min-height: 90px;
-        height: 100px;
       }
 
       .city-list {
@@ -427,82 +491,89 @@
   <div class="main-container">
     <ul class="city-list">
       <li>
-        <div class="city-bg"
-          style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80');">
-        </div>
-        <a href="./nationwide/nationwide.html">全國</a>
+        <div class="city-bg nationwide"></div><a href="./nationwide/nationwide.html">全國</a>
       </li>
       <li>
-        <div class="city-bg"
-          style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80');">
-        </div>
-        <a href="">基隆市</a>
+        <div class="city-bg keelung"></div><a href="">基隆市</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"
-          style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80');">
-        </div>
-        <a href="./taipei/taipei.html">臺北市</a>
+        <div class="city-bg taipei"></div><a href="./taipei/taipei.html">臺北市</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="./new-taipei/new-taipei.html">新北市</a>
+        <div class="city-bg new-taipei"></div><a href="./new-taipei/new-taipei.html">新北市</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="">桃園市</a>
+        <div class="city-bg taoyuan"></div><a href="">桃園市</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">新竹市</a>
+        <div class="city-bg hsinchu-city"></div><a href="">新竹市</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">新竹縣</a>
+        <div class="city-bg hsinchu-county"></div><a href="">新竹縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">苗栗縣</a>
+        <div class="city-bg miaoli"></div><a href="">苗栗縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="./taichung/taichung.html">臺中市</a>
+        <div class="city-bg taichung"></div><a href="./taichung/taichung.html">臺中市</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="">彰化縣</a>
+        <div class="city-bg changhua"></div><a href="">彰化縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">南投縣</a>
+        <div class="city-bg nantou"></div><a href="">南投縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">雲林縣</a>
+        <div class="city-bg yunlin"></div><a href="">雲林縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">嘉義市</a>
+        <div class="city-bg chiayi-city"></div><a href="">嘉義市</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">嘉義縣</a>
+        <div class="city-bg chiayi-county"></div><a href="">嘉義縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="./tainan/tainan.html">臺南市</a>
+        <div class="city-bg tainan"></div><a href="./tainan/tainan.html">臺南市</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="./kaohsiung/kaohsiung.html">高雄市</a>
+        <div class="city-bg kaohsiung"></div><a href="./kaohsiung/kaohsiung.html">高雄市</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="">屏東縣</a>
+        <div class="city-bg pingtung"></div><a href="">屏東縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">宜蘭縣</a>
+        <div class="city-bg yilan"></div><a href="">宜蘭縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="./hualien/hualien.html">花蓮縣</a>
+        <div class="city-bg hualien"></div><a href="./hualien/hualien.html">花蓮縣</a>
       </li>
       <li>
-        <div class="city-bg"></div><a href="">臺東縣</a>
+        <div class="city-bg taitung"></div><a href="">臺東縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">澎湖縣</a>
+        <div class="city-bg penghu"></div><a href="">澎湖縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">金門縣</a>
+        <div class="city-bg kinmen"></div><a href="">金門縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
       <li>
-        <div class="city-bg"></div><a href="">連江縣</a>
+        <div class="city-bg lianjiang"></div><a href="">連江縣</a>
+        <img class="under-construction" src="./uc-h.png" alt="施工中" />
       </li>
     </ul>
   </div>
@@ -510,7 +581,7 @@
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>遺漏賽事? 任何問題? 歡迎與我們聯絡</h3>
+        <h3>任何問題? 歡迎與我們聯絡</h3>
         <h3>資料錯誤過時?! 一定要與我們聯絡!</h3>
         <div class="contact-links">
           <button id="copyEmailBtn" class="copy-email-btn">
