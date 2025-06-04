@@ -63,11 +63,15 @@
   <meta name="twitter:description" content="收錄台北市夜市王美食賽事與排行，探索南機場夜市，寧夏夜市等精選活動，帶你發現台北在地美味。">
   <meta name="twitter:image" content="https://foodie.selection.com.tw/logo512.png">
   <link rel="icon" href="https://foodie.selection.com.tw/logo128.png" type="image/png">
-  <link rel="canonical" href="https://foodie.selection.com.tw/taipei/the-king-of-night-market/the-king-of-night-market.html">
+  <link rel="canonical"
+    href="https://foodie.selection.com.tw/taipei/the-king-of-night-market/the-king-of-night-market.html">
+
+  <!-- 使用中文字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap" rel="stylesheet">
 
   <style>
     body {
-      font-family: "Noto Sans TC", Arial, Helvetica, sans-serif;
+      font-family: "Yuji Boku", "Noto Sans TC", Arial, Helvetica, sans-serif;
       background: #020000;
       background: -webkit-linear-gradient(to right, #020000, #020000, #020000, #020000, #020000, #830b01);
       background: linear-gradient(to right, #020000, #020000, #020000, #020000, #020000, #830b01);
@@ -138,24 +142,23 @@
 
     .image-grid {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: left;
-      padding: 2rem 1rem;
-      max-width: 900px;
-      margin: 0 auto;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 2rem;
     }
 
     .image-item {
       flex: 1 1 120px;
       max-width: 180px;
       min-width: 180px;
+      height: 140px;
       background: #830b01;
       border-radius: 10px;
-      overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
     }
 
     .image-item:hover {
@@ -179,11 +182,22 @@
     }
 
     .image-caption {
-      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 2.4rem;
       font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 2px;
+      white-space: pre-line;
       color: #9e7c35;
+      text-shadow:
+        1px 1px 0 #020000,
+        -1px 1px 0 #020000,
+        1px -1px 0 #020000,
+        -1px -1px 0 #020000,
+        0 1px 0 #020000,
+        1px 0 0 #020000,
+        0 -1px 0 #020000,
+        -1px 0 0 #020000;
     }
 
     @media (max-width: 768px) {
@@ -197,7 +211,7 @@
       }
 
       .image-caption {
-        font-size: 0.95rem;
+        font-size: 2rem;
       }
     }
   </style>
@@ -212,20 +226,18 @@
     <div class="header-btn-placeholder"></div>
   </header>
   <main class="container">
-    <section class="image-grid">
+    <div class="image-grid">
       <div class="image-item">
         <a class="image-link" href="./nanjichang-night-market.html">
-          <img src="./nanjichang-night-market.png" alt="尚未獲得圖片授權">
-          <div class="image-caption">南機場夜市</div>
+          <div class="image-caption">南機場<br>夜市</div>
         </a>
       </div>
       <div class="image-item">
         <a class="image-link" href="./ningxia-night-market.html">
-          <img src="./ningxia-night-market.png" alt="尚未獲得圖片授權">
-          <div class="image-caption">寧夏夜市</div>
+          <div class="image-caption">寧夏<br>夜市</div>
         </a>
       </div>
-    </section>
+    </div>
   </main>
 </body>
 
