@@ -14,7 +14,7 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>最強美食競賽蒐尋器 | 吃貨精選-Foodie Selection</title>
+  <title>最強美食競賽搜尋器 | 吃貨精選-Foodie Selection</title>
   
   
 <script type="application/ld+json">
@@ -22,7 +22,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "吃貨精選-Foodie Selection",
-  "description": "探索全台美食競賽，發現在地美味，品嚐競技精神",
+  "description": "",
   "url": "https:\/\/foodie.selection.com.tw\/",
   "image": "https:\/\/foodie.selection.com.tw\/images\/logo512.png",
   "inLanguage": "zh-Hant",
@@ -45,15 +45,15 @@
 
   
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <meta name="description" content="探索全台美食競賽，發現在地美味，品嚐競技精神">
+  <meta name="description" content="">
   <meta name="keywords" content="美食競賽, 台灣美食, 美食精選">
   <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
   <meta name="author" content="吃貨精選-Foodie Selection">
   <link rel="canonical" href="https://foodie.selection.com.tw/">
 
   
-  <meta property="og:title" content="最強美食競賽蒐尋器 | 吃貨精選-Foodie Selection">
-  <meta property="og:description" content="探索全台美食競賽，發現在地美味，品嚐競技精神">
+  <meta property="og:title" content="最強美食競賽搜尋器 | 吃貨精選-Foodie Selection">
+  <meta property="og:description" content="">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://foodie.selection.com.tw/">
   <meta property="og:image" content="https://foodie.selection.com.tw/images/logo512.png">
@@ -62,8 +62,8 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="最強美食競賽蒐尋器 | 吃貨精選-Foodie Selection">
-  <meta name="twitter:description" content="探索全台美食競賽，發現在地美味，品嚐競技精神">
+  <meta name="twitter:title" content="最強美食競賽搜尋器 | 吃貨精選-Foodie Selection">
+  <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://foodie.selection.com.tw/images/logo512.png">
 
   
@@ -257,39 +257,87 @@
   });
 
   
-  
-  fetch('/data/city_districts.json')
-    .then(response => response.json())
-    .then(data => {
-      
-      const initialCity = "所有城市";
-      const initialDistrict = "所有行政區";
+  Promise.all([
+    fetch('/data/city_districts.json').then(r => r.json()),
+    fetch('/data/city_awards.json').then(r => r.json())
+  ]).then(([districtData, awardData]) => {
+    
+    const initialCity = "所有城市";
+    const initialDistrict = "所有行政區";
+    const initialAward = "所有獎項";
 
-      
-      const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
-      const regionButton = document.querySelector('.select-button[data-target="region"]');
-      const districtButton = document.querySelector('.select-button[data-target="district"]');
-      const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    
+    const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+    const regionButton = document.querySelector('.select-button[data-target="region"]');
+    const districtButton = document.querySelector('.select-button[data-target="district"]');
+    const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    const awardButton = document.querySelector('.select-button[data-target="award"]');
+    const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
 
-      
-      data.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = item.city;
-        option.textContent = item.city;
-        regionDropdown.appendChild(option);
-      });
+    
+    districtData.forEach(item => {
+      const option = document.createElement('div');
+      option.className = 'option';
+      option.dataset.value = item.city;
+      option.textContent = item.city;
+      regionDropdown.appendChild(option);
+    });
 
-      
-      if (initialCity) {
-        regionButton.textContent = initialCity;
+    
+    if (initialCity) {
+      regionButton.textContent = initialCity;
+    }
+
+    
+    if (initialCity) {
+      const cityData = districtData.find(item => item.city === initialCity);
+      if (cityData) {
+        districtDropdown.innerHTML = ''; 
+        cityData.district.forEach(district => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = district;
+          option.textContent = district;
+          districtDropdown.appendChild(option);
+        });
+
+        
+        if (initialDistrict) {
+          districtButton.textContent = initialDistrict;
+        }
       }
 
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
+      const awardCityData = awardData.find(item => item.city === initialCity);
+      if (awardCityData) {
+        awardDropdown.innerHTML = ''; 
+        awardCityData.awards.forEach(award => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = award;
+          option.textContent = award;
+          awardDropdown.appendChild(option);
+        });
+
+        
+        if (initialAward) {
+          awardButton.textContent = initialAward;
+        }
+      }
+    }
+
+    
+    regionDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        regionButton.textContent = e.target.textContent;
+        regionDropdown.style.display = 'none';
+
+        
+        districtButton.textContent = '所有行政區';
+        districtDropdown.innerHTML = '';
+
+        
+        const cityData = districtData.find(item => item.city === e.target.textContent);
         if (cityData) {
-          districtDropdown.innerHTML = ''; 
           cityData.district.forEach(district => {
             const option = document.createElement('div');
             option.className = 'option';
@@ -297,115 +345,39 @@
             option.textContent = district;
             districtDropdown.appendChild(option);
           });
-
-          
-          if (initialDistrict) {
-            districtButton.textContent = initialDistrict;
-          }
         }
-      }
 
-      
-      regionDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          regionButton.textContent = e.target.textContent;
-          regionDropdown.style.display = 'none';
-
-          
-          districtButton.textContent = '所有行政區';
-          districtDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.district.forEach(district => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = district;
-              option.textContent = district;
-              districtDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      districtDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          districtButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
-
-  
-  
-  
-  let cityAwardsData = [];
-  fetch('/data/city_awards.json')
-    .then(response => response.json())
-    .then(data => {
-      const initialCity = "所有城市";
-      const initialAward = "所有獎項";
-
-      
-      const awardButton = document.querySelector('.select-button[data-target="award"]');
-      const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
-
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
-        if (cityData) {
+        
+        const awardCityData = awardData.find(item => item.city === e.target.textContent);
+        if (awardCityData) {
           awardDropdown.innerHTML = ''; 
-          cityData.awards.forEach(award => {
+          awardCityData.awards.forEach(award => {
             const option = document.createElement('div');
             option.className = 'option';
             option.dataset.value = award;
             option.textContent = award;
             awardDropdown.appendChild(option);
           });
-
-          
-          if (initialAward) {
-            awardButton.textContent = initialAward;
-          }
         }
       }
+    });
 
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          awardDropdown.style.display = 'none';
+    
+    districtDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        districtButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
 
-          
-          awardButton.textContent = '所有獎項';
-          awardDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.awards.forEach(award => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = award;
-              option.textContent = award;
-              awardDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
+    
+    awardDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        awardButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+  }).catch(err => console.error(err));
 
   
   fetch('/data/year.json')

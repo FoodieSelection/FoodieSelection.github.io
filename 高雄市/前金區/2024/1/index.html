@@ -34,11 +34,57 @@
     "logo": {
       "@type": "ImageObject",
       "url": "https:\/\/foodie.selection.com.tw\/images\/logo512.png"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "foodieselectioninfo@gmail.com"
     }
   },
-  "hasPart": [
-    
-  ]
+  "itemListElement": [{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "Marc L³",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "高雄市前金區仁義街231號",
+        "addressLocality": "高雄市",
+        "addressRegion": "前金區",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "22.62049680742647",
+        "longitude": " 120.30097226915365"
+      },
+      "hasMap": "https://maps.app.goo.gl/cUKQNxUizNdCKf3i7",
+      "sameAs": ["https://footinder.com.tw/%E9%AB%98%E9%9B%84%E5%B8%82%E5%89%8D%E9%87%91%E5%8D%80/155022/","https://www.instagram.com/marc_l3/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "菜包李小吃部",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "高雄市前金區河南二路137號",
+        "addressLocality": "高雄市",
+        "addressRegion": "前金區",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "22.634175164086876",
+        "longitude": " 120.29224845835454"
+      },
+      "telephone": "072155566",
+      "hasMap": "https://maps.app.goo.gl/x4hrDKPxqJAw7JT46",
+      "sameAs": ["https://footinder.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82%e5%89%8d%e9%87%91%e5%8d%80/10914/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  }]
 }
 </script>
 
@@ -360,39 +406,87 @@
   });
 
   
-  
-  fetch('/data/city_districts.json')
-    .then(response => response.json())
-    .then(data => {
-      
-      const initialCity = "高雄市";
-      const initialDistrict = "前金區";
+  Promise.all([
+    fetch('/data/city_districts.json').then(r => r.json()),
+    fetch('/data/city_awards.json').then(r => r.json())
+  ]).then(([districtData, awardData]) => {
+    
+    const initialCity = "高雄市";
+    const initialDistrict = "前金區";
+    const initialAward = "所有獎項";
 
-      
-      const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
-      const regionButton = document.querySelector('.select-button[data-target="region"]');
-      const districtButton = document.querySelector('.select-button[data-target="district"]');
-      const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    
+    const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+    const regionButton = document.querySelector('.select-button[data-target="region"]');
+    const districtButton = document.querySelector('.select-button[data-target="district"]');
+    const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    const awardButton = document.querySelector('.select-button[data-target="award"]');
+    const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
 
-      
-      data.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = item.city;
-        option.textContent = item.city;
-        regionDropdown.appendChild(option);
-      });
+    
+    districtData.forEach(item => {
+      const option = document.createElement('div');
+      option.className = 'option';
+      option.dataset.value = item.city;
+      option.textContent = item.city;
+      regionDropdown.appendChild(option);
+    });
 
-      
-      if (initialCity) {
-        regionButton.textContent = initialCity;
+    
+    if (initialCity) {
+      regionButton.textContent = initialCity;
+    }
+
+    
+    if (initialCity) {
+      const cityData = districtData.find(item => item.city === initialCity);
+      if (cityData) {
+        districtDropdown.innerHTML = ''; 
+        cityData.district.forEach(district => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = district;
+          option.textContent = district;
+          districtDropdown.appendChild(option);
+        });
+
+        
+        if (initialDistrict) {
+          districtButton.textContent = initialDistrict;
+        }
       }
 
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
+      const awardCityData = awardData.find(item => item.city === initialCity);
+      if (awardCityData) {
+        awardDropdown.innerHTML = ''; 
+        awardCityData.awards.forEach(award => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = award;
+          option.textContent = award;
+          awardDropdown.appendChild(option);
+        });
+
+        
+        if (initialAward) {
+          awardButton.textContent = initialAward;
+        }
+      }
+    }
+
+    
+    regionDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        regionButton.textContent = e.target.textContent;
+        regionDropdown.style.display = 'none';
+
+        
+        districtButton.textContent = '所有行政區';
+        districtDropdown.innerHTML = '';
+
+        
+        const cityData = districtData.find(item => item.city === e.target.textContent);
         if (cityData) {
-          districtDropdown.innerHTML = ''; 
           cityData.district.forEach(district => {
             const option = document.createElement('div');
             option.className = 'option';
@@ -400,115 +494,39 @@
             option.textContent = district;
             districtDropdown.appendChild(option);
           });
-
-          
-          if (initialDistrict) {
-            districtButton.textContent = initialDistrict;
-          }
         }
-      }
 
-      
-      regionDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          regionButton.textContent = e.target.textContent;
-          regionDropdown.style.display = 'none';
-
-          
-          districtButton.textContent = '所有行政區';
-          districtDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.district.forEach(district => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = district;
-              option.textContent = district;
-              districtDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      districtDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          districtButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
-
-  
-  
-  
-  let cityAwardsData = [];
-  fetch('/data/city_awards.json')
-    .then(response => response.json())
-    .then(data => {
-      const initialCity = "高雄市";
-      const initialAward = "所有獎項";
-
-      
-      const awardButton = document.querySelector('.select-button[data-target="award"]');
-      const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
-
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
-        if (cityData) {
+        
+        const awardCityData = awardData.find(item => item.city === e.target.textContent);
+        if (awardCityData) {
           awardDropdown.innerHTML = ''; 
-          cityData.awards.forEach(award => {
+          awardCityData.awards.forEach(award => {
             const option = document.createElement('div');
             option.className = 'option';
             option.dataset.value = award;
             option.textContent = award;
             awardDropdown.appendChild(option);
           });
-
-          
-          if (initialAward) {
-            awardButton.textContent = initialAward;
-          }
         }
       }
+    });
 
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          awardDropdown.style.display = 'none';
+    
+    districtDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        districtButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
 
-          
-          awardButton.textContent = '所有獎項';
-          awardDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.awards.forEach(award => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = award;
-              option.textContent = award;
-              awardDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
+    
+    awardDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        awardButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+  }).catch(err => console.error(err));
 
   
   fetch('/data/year.json')

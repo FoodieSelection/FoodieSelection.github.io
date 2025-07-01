@@ -34,11 +34,124 @@
     "logo": {
       "@type": "ImageObject",
       "url": "https:\/\/foodie.selection.com.tw\/images\/logo512.png"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "foodieselectioninfo@gmail.com"
     }
   },
-  "hasPart": [
-    
-  ]
+  "itemListElement": [{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "清香飲食店",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "新竹縣關西鎮中豐路一段422號",
+        "addressLocality": "新竹縣",
+        "addressRegion": "關西鎮",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.791331233327252",
+        "longitude": " 121.17808831922748"
+      },
+      "telephone": "035872887",
+      "hasMap": "https://maps.app.goo.gl/zeHsRpfwUyR6WpfY7",
+      "sameAs": ["https://footinder.com.tw/%e6%96%b0%e7%ab%b9%e7%b8%a3%e9%97%9c%e8%a5%bf%e9%8e%ae/89662/","https://www.facebook.com/profile.php?id=100054642121568"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "首烏廚EAT",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "新竹縣竹北市成功二街31號",
+        "addressLocality": "新竹縣",
+        "addressRegion": "竹北市",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.820187283396464",
+        "longitude": " 121.02329568987837"
+      },
+      "telephone": "036688609",
+      "hasMap": "https://maps.app.goo.gl/xk4nBoghWkthcgor6",
+      "sameAs": ["https://footinder.com.tw/%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82/127911/","https://www.facebook.com/profile.php?id=100064184345026"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "鮨安",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "新竹縣竹北市嘉豐南路一段62號",
+        "addressLocality": "新竹縣",
+        "addressRegion": "竹北市",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.81105080518",
+        "longitude": " 121.03408765039525"
+      },
+      "telephone": "0919110613",
+      "hasMap": "https://maps.app.goo.gl/LpRGLAPYyLjn7H4P9",
+      "sameAs": ["https://footinder.com.tw/%e6%96%b0%e7%ab%b9%e7%b8%a3%e7%ab%b9%e5%8c%97%e5%b8%82/362175/","https://www.facebook.com/profile.php?id=100072667800756"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "悅鄉田園",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "新竹縣峨眉鄉竹49鄉道",
+        "addressLocality": "新竹縣",
+        "addressRegion": "峨眉鄉",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.685387154382493",
+        "longitude": " 121.01047050321395"
+      },
+      "telephone": "035800576",
+      "hasMap": "https://maps.app.goo.gl/wD4hkeVqwrR5Yc8G9",
+      "sameAs": ["https://footinder.com.tw/%E6%96%B0%E7%AB%B9%E7%B8%A3%E5%B3%A8%E7%9C%89%E9%84%89/74805/","https://www.facebook.com/profile.php?id=100057145193264"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "Piccola Enoteca 彼刻義式餐酒館",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "新竹縣竹北市成功二街102號",
+        "addressLocality": "新竹縣",
+        "addressRegion": "竹北市",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.81947736215569",
+        "longitude": " 121.0245357659529"
+      },
+      "telephone": "036688313",
+      "hasMap": "https://maps.app.goo.gl/L1m4HeEY3kjTJ5cR8",
+      "sameAs": ["https://footinder.com.tw/%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82/158621/","https://www.piccolaenoteca.com/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  }]
 }
 </script>
 
@@ -509,39 +622,87 @@
   });
 
   
-  
-  fetch('/data/city_districts.json')
-    .then(response => response.json())
-    .then(data => {
-      
-      const initialCity = "新竹縣";
-      const initialDistrict = "所有行政區";
+  Promise.all([
+    fetch('/data/city_districts.json').then(r => r.json()),
+    fetch('/data/city_awards.json').then(r => r.json())
+  ]).then(([districtData, awardData]) => {
+    
+    const initialCity = "新竹縣";
+    const initialDistrict = "所有行政區";
+    const initialAward = "500盤";
 
-      
-      const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
-      const regionButton = document.querySelector('.select-button[data-target="region"]');
-      const districtButton = document.querySelector('.select-button[data-target="district"]');
-      const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    
+    const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+    const regionButton = document.querySelector('.select-button[data-target="region"]');
+    const districtButton = document.querySelector('.select-button[data-target="district"]');
+    const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    const awardButton = document.querySelector('.select-button[data-target="award"]');
+    const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
 
-      
-      data.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = item.city;
-        option.textContent = item.city;
-        regionDropdown.appendChild(option);
-      });
+    
+    districtData.forEach(item => {
+      const option = document.createElement('div');
+      option.className = 'option';
+      option.dataset.value = item.city;
+      option.textContent = item.city;
+      regionDropdown.appendChild(option);
+    });
 
-      
-      if (initialCity) {
-        regionButton.textContent = initialCity;
+    
+    if (initialCity) {
+      regionButton.textContent = initialCity;
+    }
+
+    
+    if (initialCity) {
+      const cityData = districtData.find(item => item.city === initialCity);
+      if (cityData) {
+        districtDropdown.innerHTML = ''; 
+        cityData.district.forEach(district => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = district;
+          option.textContent = district;
+          districtDropdown.appendChild(option);
+        });
+
+        
+        if (initialDistrict) {
+          districtButton.textContent = initialDistrict;
+        }
       }
 
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
+      const awardCityData = awardData.find(item => item.city === initialCity);
+      if (awardCityData) {
+        awardDropdown.innerHTML = ''; 
+        awardCityData.awards.forEach(award => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = award;
+          option.textContent = award;
+          awardDropdown.appendChild(option);
+        });
+
+        
+        if (initialAward) {
+          awardButton.textContent = initialAward;
+        }
+      }
+    }
+
+    
+    regionDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        regionButton.textContent = e.target.textContent;
+        regionDropdown.style.display = 'none';
+
+        
+        districtButton.textContent = '所有行政區';
+        districtDropdown.innerHTML = '';
+
+        
+        const cityData = districtData.find(item => item.city === e.target.textContent);
         if (cityData) {
-          districtDropdown.innerHTML = ''; 
           cityData.district.forEach(district => {
             const option = document.createElement('div');
             option.className = 'option';
@@ -549,115 +710,39 @@
             option.textContent = district;
             districtDropdown.appendChild(option);
           });
-
-          
-          if (initialDistrict) {
-            districtButton.textContent = initialDistrict;
-          }
         }
-      }
 
-      
-      regionDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          regionButton.textContent = e.target.textContent;
-          regionDropdown.style.display = 'none';
-
-          
-          districtButton.textContent = '所有行政區';
-          districtDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.district.forEach(district => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = district;
-              option.textContent = district;
-              districtDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      districtDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          districtButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
-
-  
-  
-  
-  let cityAwardsData = [];
-  fetch('/data/city_awards.json')
-    .then(response => response.json())
-    .then(data => {
-      const initialCity = "新竹縣";
-      const initialAward = "500盤";
-
-      
-      const awardButton = document.querySelector('.select-button[data-target="award"]');
-      const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
-
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
-        if (cityData) {
+        
+        const awardCityData = awardData.find(item => item.city === e.target.textContent);
+        if (awardCityData) {
           awardDropdown.innerHTML = ''; 
-          cityData.awards.forEach(award => {
+          awardCityData.awards.forEach(award => {
             const option = document.createElement('div');
             option.className = 'option';
             option.dataset.value = award;
             option.textContent = award;
             awardDropdown.appendChild(option);
           });
-
-          
-          if (initialAward) {
-            awardButton.textContent = initialAward;
-          }
         }
       }
+    });
 
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          awardDropdown.style.display = 'none';
+    
+    districtDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        districtButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
 
-          
-          awardButton.textContent = '所有獎項';
-          awardDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.awards.forEach(award => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = award;
-              option.textContent = award;
-              awardDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
+    
+    awardDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        awardButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+  }).catch(err => console.error(err));
 
   
   fetch('/data/year.json')

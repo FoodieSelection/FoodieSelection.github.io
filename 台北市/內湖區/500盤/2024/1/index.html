@@ -34,11 +34,94 @@
     "logo": {
       "@type": "ImageObject",
       "url": "https:\/\/foodie.selection.com.tw\/images\/logo512.png"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "foodieselectioninfo@gmail.com"
     }
   },
-  "hasPart": [
-    
-  ]
+  "itemListElement": [{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "喜相逢麵館",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "台北市內湖區東湖路106巷7弄3號",
+        "addressLocality": "台北市",
+        "addressRegion": "內湖區",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.068019368221286",
+        "longitude": " 121.61493913890837"
+      },
+      "hasMap": "https://maps.app.goo.gl/kMmuPQzaZQ31yoKL9",
+      "sameAs": ["https://footinder.com.tw/%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80/9863/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "三元花園韓式餐廳",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "台北市內湖區瑞光路188巷43號1F",
+        "addressLocality": "台北市",
+        "addressRegion": "內湖區",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.07397305919308",
+        "longitude": " 121.57628864094568"
+      },
+      "telephone": "0287523222",
+      "hasMap": "https://maps.app.goo.gl/hx9pNixaaB1s69sk9",
+      "sameAs": ["https://footinder.com.tw/%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80/9161/","http://www.samwon.com.tw/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "德朗火鍋",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "分店眾多請自行搜尋",
+        "addressLocality": "台北市",
+        "addressRegion": "內湖區",
+        "addressCountry": "TW"
+      },
+      "hasMap": "https://www.google.com/maps/search/%E5%BE%B7%E6%9C%97%E7%81%AB%E9%8D%8B/@25.0637936,121.5392536,13.38z?entry=ttu\u0026g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D",
+      "sameAs": ["https://footinder.com.tw/%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80/42802/","https://hotpot.deloin.com.tw/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  },{
+    "@type": "ListItem",
+    "item": {
+      "@type": "Restaurant",
+      "name": "Logy",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "台北市內湖區瑞光路258巷39號1F",
+        "addressLocality": "台北市",
+        "addressRegion": "內湖區",
+        "addressCountry": "TW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "25.074903543245654",
+        "longitude": " 121.57481528946546"
+      },
+      "hasMap": "https://maps.app.goo.gl/beknCxr26CaGJ4sP6",
+      "sameAs": ["https://footinder.com.tw/%e5%8f%b0%e5%8c%97%e5%b8%82%e5%85%a7%e6%b9%96%e5%8d%80/13177/","https://logy.tw/"],
+      "award": [{"@type":"Award","awardDate":"2024","awardName":"500盤"}]
+    }
+  }]
 }
 </script>
 
@@ -446,39 +529,87 @@
   });
 
   
-  
-  fetch('/data/city_districts.json')
-    .then(response => response.json())
-    .then(data => {
-      
-      const initialCity = "台北市";
-      const initialDistrict = "內湖區";
+  Promise.all([
+    fetch('/data/city_districts.json').then(r => r.json()),
+    fetch('/data/city_awards.json').then(r => r.json())
+  ]).then(([districtData, awardData]) => {
+    
+    const initialCity = "台北市";
+    const initialDistrict = "內湖區";
+    const initialAward = "500盤";
 
-      
-      const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
-      const regionButton = document.querySelector('.select-button[data-target="region"]');
-      const districtButton = document.querySelector('.select-button[data-target="district"]');
-      const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    
+    const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+    const regionButton = document.querySelector('.select-button[data-target="region"]');
+    const districtButton = document.querySelector('.select-button[data-target="district"]');
+    const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
+    const awardButton = document.querySelector('.select-button[data-target="award"]');
+    const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
 
-      
-      data.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = item.city;
-        option.textContent = item.city;
-        regionDropdown.appendChild(option);
-      });
+    
+    districtData.forEach(item => {
+      const option = document.createElement('div');
+      option.className = 'option';
+      option.dataset.value = item.city;
+      option.textContent = item.city;
+      regionDropdown.appendChild(option);
+    });
 
-      
-      if (initialCity) {
-        regionButton.textContent = initialCity;
+    
+    if (initialCity) {
+      regionButton.textContent = initialCity;
+    }
+
+    
+    if (initialCity) {
+      const cityData = districtData.find(item => item.city === initialCity);
+      if (cityData) {
+        districtDropdown.innerHTML = ''; 
+        cityData.district.forEach(district => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = district;
+          option.textContent = district;
+          districtDropdown.appendChild(option);
+        });
+
+        
+        if (initialDistrict) {
+          districtButton.textContent = initialDistrict;
+        }
       }
 
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
+      const awardCityData = awardData.find(item => item.city === initialCity);
+      if (awardCityData) {
+        awardDropdown.innerHTML = ''; 
+        awardCityData.awards.forEach(award => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = award;
+          option.textContent = award;
+          awardDropdown.appendChild(option);
+        });
+
+        
+        if (initialAward) {
+          awardButton.textContent = initialAward;
+        }
+      }
+    }
+
+    
+    regionDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        regionButton.textContent = e.target.textContent;
+        regionDropdown.style.display = 'none';
+
+        
+        districtButton.textContent = '所有行政區';
+        districtDropdown.innerHTML = '';
+
+        
+        const cityData = districtData.find(item => item.city === e.target.textContent);
         if (cityData) {
-          districtDropdown.innerHTML = ''; 
           cityData.district.forEach(district => {
             const option = document.createElement('div');
             option.className = 'option';
@@ -486,115 +617,39 @@
             option.textContent = district;
             districtDropdown.appendChild(option);
           });
-
-          
-          if (initialDistrict) {
-            districtButton.textContent = initialDistrict;
-          }
         }
-      }
 
-      
-      regionDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          regionButton.textContent = e.target.textContent;
-          regionDropdown.style.display = 'none';
-
-          
-          districtButton.textContent = '所有行政區';
-          districtDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.district.forEach(district => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = district;
-              option.textContent = district;
-              districtDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      districtDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          districtButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
-
-  
-  
-  
-  let cityAwardsData = [];
-  fetch('/data/city_awards.json')
-    .then(response => response.json())
-    .then(data => {
-      const initialCity = "台北市";
-      const initialAward = "500盤";
-
-      
-      const awardButton = document.querySelector('.select-button[data-target="award"]');
-      const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
-
-      
-      if (initialCity) {
-        const cityData = data.find(item => item.city === initialCity);
-        if (cityData) {
+        
+        const awardCityData = awardData.find(item => item.city === e.target.textContent);
+        if (awardCityData) {
           awardDropdown.innerHTML = ''; 
-          cityData.awards.forEach(award => {
+          awardCityData.awards.forEach(award => {
             const option = document.createElement('div');
             option.className = 'option';
             option.dataset.value = award;
             option.textContent = award;
             awardDropdown.appendChild(option);
           });
-
-          
-          if (initialAward) {
-            awardButton.textContent = initialAward;
-          }
         }
       }
+    });
 
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          awardDropdown.style.display = 'none';
+    
+    districtDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        districtButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
 
-          
-          awardButton.textContent = '所有獎項';
-          awardDropdown.innerHTML = '';
-
-          
-          const cityData = data.find(item => item.city === e.target.textContent);
-          if (cityData) {
-            cityData.awards.forEach(award => {
-              const option = document.createElement('div');
-              option.className = 'option';
-              option.dataset.value = award;
-              option.textContent = award;
-              awardDropdown.appendChild(option);
-            });
-          }
-        }
-      });
-
-      
-      awardDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          awardButton.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
+    
+    awardDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        awardButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+  }).catch(err => console.error(err));
 
   
   fetch('/data/year.json')

@@ -106,7 +106,7 @@
             <div class="filter-group" id="district-group">
               <label class="form-label">行政區</label>
               <div class="custom-select">
-                <button class="select-button" data-target="district" disabled>所有行政區</button>
+                <button class="select-button" data-target="district">所有行政區</button>
                 <div class="select-dropdown" data-target="district" style="display: none;">
                 </div>
               </div>
@@ -244,124 +244,140 @@
   });
 
   
-  
-  fetch('/data/city_districts.json')
-    .then(response => response.json())
-    .then(data => {
-      const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+  Promise.all([
+    fetch('/data/city_districts.json').then(r => r.json()),
+    fetch('/data/city_awards.json').then(r => r.json())
+  ]).then(([districtData, awardData]) => {
+    
+    const initialCity = "";
+    const initialDistrict = "";
+    const initialAward = "";
 
-      
-      data.forEach(item => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = item.city;
-        option.textContent = item.city;
-        regionDropdown.appendChild(option);
-      });
-
-      
-      regionDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          const regionButton = document.querySelector('.select-button[data-target="region"]');
-          regionButton.textContent = e.target.textContent;
-          regionDropdown.style.display = 'none';
-
-          const districtButton = document.querySelector('.select-button[data-target="district"]');
-          const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
-
-          
-          districtButton.textContent = '所有行政區';
-          
-          if (regionButton.textContent === '所有城市') {
-            districtButton.disabled = true;
-            districtDropdown.innerHTML = ''; 
-          } else {
-            districtButton.disabled = false;
-            
-            districtDropdown.innerHTML = '';
-            
-            const cityData = data.find(item => item.city === regionButton.textContent);
-            if (cityData) {
-              cityData.district.forEach(district => {
-                const option = document.createElement('div');
-                option.className = 'option';
-                option.dataset.value = district;
-                option.textContent = district;
-                districtDropdown.appendChild(option);
-              });
-            }
-          }
-        }
-      });
-
-      
-      document.querySelector('.select-dropdown[data-target="district"]').addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          const button = document.querySelector('.select-button[data-target="district"]');
-          button.textContent = e.target.textContent;
-          this.style.display = 'none';
-        }
-      });
-    })
-    .catch(error => console.error('讀取 JSON 失敗:', error));
-
-  
-  
-  
-  let cityAwardsData = [];
-  fetch('/data/city_awards.json')
-    .then(response => response.json())
-    .then(data => {
-      cityAwardsData = data;
-      
-      updateAwardDropdown('所有城市');
-    })
-    .catch(error => console.error('讀取 city_awards.json 失敗:', error));
-
-  
-  function updateAwardDropdown(selectedCity) {
+    
+    const regionDropdown = document.querySelector('.select-dropdown[data-target="region"]');
+    const regionButton = document.querySelector('.select-button[data-target="region"]');
+    const districtButton = document.querySelector('.select-button[data-target="district"]');
+    const districtDropdown = document.querySelector('.select-dropdown[data-target="district"]');
     const awardButton = document.querySelector('.select-button[data-target="award"]');
     const awardDropdown = document.querySelector('.select-dropdown[data-target="award"]');
-    const currentAward = awardButton.textContent;
 
     
-    awardDropdown.innerHTML = '';
+    districtData.forEach(item => {
+      const option = document.createElement('div');
+      option.className = 'option';
+      option.dataset.value = item.city;
+      option.textContent = item.city;
+      regionDropdown.appendChild(option);
+    });
 
     
-    const cityItem = cityAwardsData.find(item => item.city === selectedCity);
-    if (cityItem && cityItem.awards && cityItem.awards.length > 0) {
-      cityItem.awards.forEach(award => {
-        const option = document.createElement('div');
-        option.className = 'option';
-        option.dataset.value = award;
-        option.textContent = award;
-        awardDropdown.appendChild(option);
-      });
+    if (initialCity) {
+      regionButton.textContent = initialCity;
     }
 
     
-    if (currentAward !== '所有獎項') {
-      if (!cityItem || !cityItem.awards || !cityItem.awards.includes(currentAward)) {
-        awardButton.textContent = '所有獎項';
+    if (initialCity) {
+      const cityData = districtData.find(item => item.city === initialCity);
+      if (cityData) {
+        districtDropdown.innerHTML = ''; 
+        cityData.district.forEach(district => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = district;
+          option.textContent = district;
+          districtDropdown.appendChild(option);
+        });
+
+        
+        if (initialDistrict) {
+          districtButton.textContent = initialDistrict;
+        }
+      }
+
+      const awardCityData = awardData.find(item => item.city === initialCity);
+      if (awardCityData) {
+        awardDropdown.innerHTML = ''; 
+        awardCityData.awards.forEach(award => {
+          const option = document.createElement('div');
+          option.className = 'option';
+          option.dataset.value = award;
+          option.textContent = award;
+          awardDropdown.appendChild(option);
+        });
+
+        
+        if (initialAward) {
+          awardButton.textContent = initialAward;
+        }
       }
     }
-  }
 
-  
-  document.querySelector('.select-dropdown[data-target="award"]').addEventListener('click', function (e) {
-    if (e.target.classList.contains('option')) {
-      const awardButton = document.querySelector('.select-button[data-target="award"]');
-      awardButton.textContent = e.target.textContent;
-    }
-  });
+    
+    regionDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        regionButton.textContent = e.target.textContent;
+        regionDropdown.style.display = 'none';
+
+        
+        districtButton.textContent = '所有行政區';
+        districtDropdown.innerHTML = '';
+
+        
+        const cityData = districtData.find(item => item.city === e.target.textContent);
+        if (cityData) {
+          cityData.district.forEach(district => {
+            const option = document.createElement('div');
+            option.className = 'option';
+            option.dataset.value = district;
+            option.textContent = district;
+            districtDropdown.appendChild(option);
+          });
+        }
+
+        
+        const awardCityData = awardData.find(item => item.city === e.target.textContent);
+        if (awardCityData) {
+          awardDropdown.innerHTML = ''; 
+          awardCityData.awards.forEach(award => {
+            const option = document.createElement('div');
+            option.className = 'option';
+            option.dataset.value = award;
+            option.textContent = award;
+            awardDropdown.appendChild(option);
+          });
+        }
+      }
+    });
+
+    
+    districtDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        districtButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+
+    
+    awardDropdown.addEventListener('click', function (e) {
+      if (e.target.classList.contains('option')) {
+        awardButton.textContent = e.target.textContent;
+        this.style.display = 'none';
+      }
+    });
+  }).catch(err => console.error(err));
 
   
   fetch('/data/year.json')
     .then(response => response.json())
     .then(data => {
-      const yearDropdown = document.querySelector('.select-dropdown[data-target="year"]');
+      const initialYear = "";
+
+      
       const yearButton = document.querySelector('.select-button[data-target="year"]');
-      yearButton.textContent = '所有年份';
+      const yearDropdown = document.querySelector('.select-dropdown[data-target="year"]');
+
+      
+      yearDropdown.innerHTML = ''; 
       data.forEach(year => {
         const option = document.createElement('div');
         option.className = 'option';
@@ -370,10 +386,27 @@
         yearDropdown.appendChild(option);
       });
 
-      document.querySelector('.select-dropdown[data-target="year"]').addEventListener('click', function (e) {
+      
+      if (initialYear) {
+        yearButton.textContent = initialYear;
+      }
+
+      
+      yearDropdown.addEventListener('click', function (e) {
         if (e.target.classList.contains('option')) {
-          const button = document.querySelector('.select-button[data-target="year"]');
-          button.textContent = e.target.textContent;
+          yearButton.textContent = e.target.textContent;
+          yearDropdown.style.display = 'none';
+
+          
+          yearButton.textContent = '所有年份';
+          yearDropdown.innerHTML = '';
+        }
+      });
+
+      
+      yearDropdown.addEventListener('click', function (e) {
+        if (e.target.classList.contains('option')) {
+          yearButton.textContent = e.target.textContent;
           this.style.display = 'none';
         }
       });
@@ -405,26 +438,6 @@
     
     window.location.href = path;
   });
-
-  
-  const initialCity = "";
-  const initialDistrict = "";
-  const initialAward = "";
-  const initialYear = "";
-
-  
-  function setSelectButtonValue(target, value) {
-    const button = document.querySelector(`.select-button[data-target="${target}"]`);
-    if (button && value) {
-      button.textContent = value;
-    }
-  }
-
-  
-  setSelectButtonValue('region', initialCity);
-  setSelectButtonValue('district', initialDistrict);
-  setSelectButtonValue('award', initialAward);
-  setSelectButtonValue('year', initialYear);
 </script>
 
 </body>
