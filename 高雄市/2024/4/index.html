@@ -223,10 +223,15 @@
       <h2 class="un-seen">搜尋結果</h2>
       <div id="restaurants-grid" class="restaurants-grid">
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.66596001902006, 120.29972647159076">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%b7%a6%e7%87%9f%e5%8d%80/%e4%be%86%e5%90%83%e6%b2%99%e5%a8%81%e7%91%aa"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">來吃沙威瑪</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">來吃沙威瑪</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -266,10 +271,15 @@
           </div>
         </div>
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.66658969357535, 120.2998883749046">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%b7%a6%e7%87%9f%e5%8d%80/%e8%96%af%e5%b0%8f%e4%ba%8c%e9%a6%ac%e9%88%b4%e8%96%af%e7%85%8e%e9%a4%85-%e7%91%9e%e8%b1%90%e7%b8%bd%e5%ba%97"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">薯小二馬鈴薯煎餅-瑞豐總店</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">薯小二馬鈴薯煎餅-瑞豐總店</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -617,6 +627,49 @@
 
     
     window.location.href = path;
+  });
+
+  
+  function parseGeo(geoStr) {
+    const [lat, lng] = geoStr.split(',').map(Number);
+    return { lat, lng };
+  }
+
+  
+  function getDistance(lat1, lng1, lat2, lng2) {
+    const toRad = x => x * Math.PI / 180;
+    const R = 6378137; 
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; 
+  }
+
+  
+  function formatDistance(distance) {
+    if (distance >= 1000) {
+      return (distance / 1000).toFixed(2) + ' 公里';
+    } else {
+      return Math.round(distance) + ' 公尺';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const userLat = position.coords.latitude;
+      const userLng = position.coords.longitude;
+      document.querySelectorAll('.restaurant-card').forEach(card => {
+        const geoStr = card.getAttribute('data-geo');
+        if (!geoStr) return;
+        const { lat, lng } = parseGeo(geoStr);
+        const distance = getDistance(userLat, userLng, lat, lng);
+        card.querySelector('.restaurant-distance').textContent = formatDistance(distance);
+      });
+    });
   });
 </script>
 

@@ -295,10 +295,15 @@
       <h2 class="un-seen">搜尋結果</h2>
       <div id="restaurants-grid" class="restaurants-grid">
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.61064694982192, 120.30552665715516">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%89%8d%e9%8e%ae%e5%8d%80/Ukai-tei_Kaohsiung"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">Ukai-tei Kaohsiung</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">Ukai-tei Kaohsiung</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -338,10 +343,15 @@
           </div>
         </div>
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.604326410394755, 120.29928960453516">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%89%8d%e9%8e%ae%e5%8d%80/%e9%9b%8bGEN_by_Matt_Chen"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">雋GEN by Matt Chen</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">雋GEN by Matt Chen</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -381,10 +391,15 @@
           </div>
         </div>
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.6061389541691, 120.30555737730485">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%89%8d%e9%8e%ae%e5%8d%80/%e6%89%bfSHO"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">承SHO</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">承SHO</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -424,10 +439,15 @@
           </div>
         </div>
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.611289731182794, 120.30352411097323">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%89%8d%e9%8e%ae%e5%8d%80/BL.T33%e5%a4%a7%e5%bb%b3%e9%85%92%e5%90%a7_%e9%ab%98%e9%9b%84%e6%b4%b2%e9%9a%9b%e9%85%92%e5%ba%97"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">BL.T33大廳酒吧_高雄洲際酒店</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">BL.T33大廳酒吧_高雄洲際酒店</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -467,10 +487,15 @@
           </div>
         </div>
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.611319256550672, 120.30348383363544">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e5%89%8d%e9%8e%ae%e5%8d%80/HAWKER%e5%a5%bd%e5%ae%a2%e5%8d%97%e6%b4%8b%e9%a4%90%e5%bb%b3"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">HAWKER好客南洋餐廳</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">HAWKER好客南洋餐廳</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -810,6 +835,49 @@
 
     
     window.location.href = path;
+  });
+
+  
+  function parseGeo(geoStr) {
+    const [lat, lng] = geoStr.split(',').map(Number);
+    return { lat, lng };
+  }
+
+  
+  function getDistance(lat1, lng1, lat2, lng2) {
+    const toRad = x => x * Math.PI / 180;
+    const R = 6378137; 
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; 
+  }
+
+  
+  function formatDistance(distance) {
+    if (distance >= 1000) {
+      return (distance / 1000).toFixed(2) + ' 公里';
+    } else {
+      return Math.round(distance) + ' 公尺';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const userLat = position.coords.latitude;
+      const userLng = position.coords.longitude;
+      document.querySelectorAll('.restaurant-card').forEach(card => {
+        const geoStr = card.getAttribute('data-geo');
+        if (!geoStr) return;
+        const { lat, lng } = parseGeo(geoStr);
+        const distance = getDistance(userLat, userLng, lat, lng);
+        card.querySelector('.restaurant-distance').textContent = formatDistance(distance);
+      });
+    });
   });
 </script>
 

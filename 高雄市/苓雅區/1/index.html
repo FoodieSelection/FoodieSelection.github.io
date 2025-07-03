@@ -199,10 +199,15 @@
       <h2 class="un-seen">搜尋結果</h2>
       <div id="restaurants-grid" class="restaurants-grid">
         
-        <div class="restaurant-card">
+        <div class="restaurant-card" data-geo="22.628106638461414, 120.31969940668854">
           <a class="card-link" href="https://foodie.selection.com.tw/%e9%ab%98%e9%9b%84%e5%b8%82/%e8%8b%93%e9%9b%85%e5%8d%80/%e4%b8%89%e7%a6%be%e6%b8%85%e8%b1%90_%e5%bf%83%e8%87%ba%e8%8f%9c"></a>
           <div class="restaurant-header">
-            <h3 class="restaurant-name">三禾清豐 心臺菜</h3>
+            <div class="restaurant-title-row">
+              <h3 class="restaurant-name">三禾清豐 心臺菜</h3>
+              <div class="restaurant-distance" id="restaurant-distance">
+                <span class="spinner"></span>正在取得距離...
+              </div>
+            </div>
             
             <div class="restaurant-awards">
               
@@ -542,6 +547,49 @@
 
     
     window.location.href = path;
+  });
+
+  
+  function parseGeo(geoStr) {
+    const [lat, lng] = geoStr.split(',').map(Number);
+    return { lat, lng };
+  }
+
+  
+  function getDistance(lat1, lng1, lat2, lng2) {
+    const toRad = x => x * Math.PI / 180;
+    const R = 6378137; 
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; 
+  }
+
+  
+  function formatDistance(distance) {
+    if (distance >= 1000) {
+      return (distance / 1000).toFixed(2) + ' 公里';
+    } else {
+      return Math.round(distance) + ' 公尺';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const userLat = position.coords.latitude;
+      const userLng = position.coords.longitude;
+      document.querySelectorAll('.restaurant-card').forEach(card => {
+        const geoStr = card.getAttribute('data-geo');
+        if (!geoStr) return;
+        const { lat, lng } = parseGeo(geoStr);
+        const distance = getDistance(userLat, userLng, lat, lng);
+        card.querySelector('.restaurant-distance').textContent = formatDistance(distance);
+      });
+    });
   });
 </script>
 
