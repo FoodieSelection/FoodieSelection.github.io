@@ -549,6 +549,50 @@
     window.location.href = path;
   });
 
+  function saveLocationToCache(lat, lng) {
+    const cache = {
+      lat,
+      lng,
+      timestamp: Date.now()
+    };
+    localStorage.setItem('foodie_selection_user_location', JSON.stringify(cache));
+  }
+
+  function getLocationFromCacheOrUpdate(maxAgeSeconds = 10, onUpdate) {
+    const cache = localStorage.getItem('foodie_selection_user_location');
+    let cachedLocation = null;
+    let expired = false;
+
+    if (cache) {
+      try {
+        const { lat, lng, timestamp } = JSON.parse(cache);
+        cachedLocation = { lat, lng };
+        if (Date.now() - timestamp > maxAgeSeconds * 1000) {
+          expired = true;
+        }
+      } catch (e) { }
+    }
+
+    
+    if (cachedLocation) {
+      return cachedLocation;
+    }
+
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        localStorage.setItem('foodie_selection_user_location', JSON.stringify({
+          lat, lng, timestamp: Date.now()
+        }));
+        if (typeof onUpdate === 'function') onUpdate(lat, lng);
+      });
+    }
+
+    return null;
+  }
+
   function parseGeo(geoStr) {
     const [lat, lng] = geoStr.split(',').map(Number);
     return { lat, lng };
@@ -597,6 +641,27 @@
     } else {
       document.getElementById('restaurant-distance').textContent =
         '您的瀏覽器不支援定位功能';
+    }
+  });
+
+  function updateDistance(newLat, newLng) {
+    const geoStr = '25.039788389690152, 121.5665901570069';
+    if (!geoStr) return;
+
+    const { lat: shopLat, lng: shopLng } = parseGeo(geoStr);
+
+    const distance = getDistance(newLat, newLng, shopLat, shopLng);
+    document.getElementById('restaurant-distance').textContent =
+      formatDistance(distance);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const loc = getLocationFromCacheOrUpdate(10, function (newLat, newLng) {
+      updateDistance(newLat, newLng);
+    });
+
+    if (loc) {
+      updateDistance(loc.lat, loc.lng);
     }
   });
 </script>
