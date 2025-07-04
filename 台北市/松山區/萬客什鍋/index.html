@@ -27,7 +27,7 @@
     "image": "https:\/\/foodie.selection.com.tw\/images\/logo512.png",
     "inLanguage": "zh-Hant",
     "datePublished": "2025-06-30",
-    "dateModified": "2025-07-03",
+    "dateModified": "2025-07-04",
     "publisher": {
       "@type": "Organization",
       "name": "吃貨精選-Foodie Selection",
@@ -86,16 +86,16 @@
     "name": "萬客什鍋",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "台北市松山區八德路四段217號",
+      "streetAddress": "分店眾多請自行搜尋",
       "addressLocality": "台北市",
       "addressRegion": "松山區",
       "addressCountry": "TW"
     },
-    "telephone": "0227485133",
+    "telephone": "",
     "url": "https:\/\/www.wankeshabu.com\/",
     "award": ["500盤 2024"],
     "sameAs": [
-      "https:\/\/maps.app.goo.gl\/493rsYuS2B6ywguB8",
+      "https:\/\/www.google.com\/maps\/search\/%E8%90%AC%E5%AE%A2%E4%BB%80%E9%8D%8B\/@23.7810862,120.9826677,8.58z\/data=!4m2!2m1!6e5?entry=ttu\u0026g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D",
       "https:\/\/footinder.com.tw\/%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80\/76083\/"
     ]
   }
@@ -258,19 +258,15 @@
             <div class="restaurant-info">
               
               <div class="restaurant-address">
-                <span class="info-item__text">📍台北市松山區八德路四段217號</span>
+                <span class="info-item__text">📍分店眾多請自行搜尋</span>
               </div>
               
 
               
-              <div class="restaurant-phone">
-                <span class="info-item__text">📞0227485133</span>
-              </div>
-              
             </div>
             <div class="restaurant-actions">
               
-              <a href="https://maps.app.goo.gl/493rsYuS2B6ywguB8" target="_blank" class="btn btn-primary">
+              <a href="https://www.google.com/maps/search/%E8%90%AC%E5%AE%A2%E4%BB%80%E9%8D%8B/@23.7810862,120.9826677,8.58z/data=!4m2!2m1!6e5?entry=ttu&amp;g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-primary">
                 Google 地圖
               </a>
               
@@ -620,7 +616,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     
-    const geoStr = '25.049050192629483, 121.56428903287014';
+    const geoStr = '';
     if (!geoStr) return;
 
     const { lat: shopLat, lng: shopLng } = parseGeo(geoStr);
@@ -643,7 +639,7 @@
   });
 
   function updateDistance(newLat, newLng) {
-    const geoStr = '25.049050192629483, 121.56428903287014';
+    const geoStr = '';
     const distanceElem = document.getElementById('restaurant-distance');
     if (!geoStr || geoStr.trim() === "") {
       

@@ -27,7 +27,7 @@
     "image": "https:\/\/foodie.selection.com.tw\/images\/logo512.png",
     "inLanguage": "zh-Hant",
     "datePublished": "2025-06-30",
-    "dateModified": "2025-07-03",
+    "dateModified": "2025-07-04",
     "publisher": {
       "@type": "Organization",
       "name": "吃貨精選-Foodie Selection",
@@ -86,16 +86,16 @@
     "name": "吳留手串燒居酒屋",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "台北市中山區八德路二段312巷13號",
+      "streetAddress": "分店眾多請自行搜尋",
       "addressLocality": "台北市",
       "addressRegion": "中山區",
       "addressCountry": "TW"
     },
-    "telephone": "0227761008",
+    "telephone": "",
     "url": "https:\/\/www.facebook.com\/wuliushou1\/",
     "award": ["500盤 2024"],
     "sameAs": [
-      "https:\/\/maps.app.goo.gl\/WuN4qqhBQw9K5hX2A",
+      "https:\/\/www.google.com\/maps\/search\/%E5%90%B3%E7%95%99%E6%89%8B%E4%B8%B2%E7%87%92%E5%B1%85%E9%85%92%E5%B1%8B\/@23.6307438,120.1264235,8.38z\/data=!4m2!2m1!6e5?entry=ttu\u0026g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D",
       "https:\/\/footinder.com.tw\/%e5%8f%b0%e5%8c%97%e5%b8%82%e4%b8%ad%e5%b1%b1%e5%8d%80\/32415\/"
     ]
   }
@@ -258,19 +258,15 @@
             <div class="restaurant-info">
               
               <div class="restaurant-address">
-                <span class="info-item__text">📍台北市中山區八德路二段312巷13號</span>
+                <span class="info-item__text">📍分店眾多請自行搜尋</span>
               </div>
               
 
               
-              <div class="restaurant-phone">
-                <span class="info-item__text">📞0227761008</span>
-              </div>
-              
             </div>
             <div class="restaurant-actions">
               
-              <a href="https://maps.app.goo.gl/WuN4qqhBQw9K5hX2A" target="_blank" class="btn btn-primary">
+              <a href="https://www.google.com/maps/search/%E5%90%B3%E7%95%99%E6%89%8B%E4%B8%B2%E7%87%92%E5%B1%85%E9%85%92%E5%B1%8B/@23.6307438,120.1264235,8.38z/data=!4m2!2m1!6e5?entry=ttu&amp;g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-primary">
                 Google 地圖
               </a>
               
@@ -620,7 +616,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     
-    const geoStr = '25.046761515645123, 121.54299162482125';
+    const geoStr = '';
     if (!geoStr) return;
 
     const { lat: shopLat, lng: shopLng } = parseGeo(geoStr);
@@ -643,7 +639,7 @@
   });
 
   function updateDistance(newLat, newLng) {
-    const geoStr = '25.046761515645123, 121.54299162482125';
+    const geoStr = '';
     const distanceElem = document.getElementById('restaurant-distance');
     if (!geoStr || geoStr.trim() === "") {
       

@@ -27,7 +27,7 @@
     "image": "https:\/\/foodie.selection.com.tw\/images\/logo512.png",
     "inLanguage": "zh-Hant",
     "datePublished": "2025-06-30",
-    "dateModified": "2025-07-03",
+    "dateModified": "2025-07-04",
     "publisher": {
       "@type": "Organization",
       "name": "吃貨精選-Foodie Selection",
@@ -86,16 +86,16 @@
     "name": "KIKI 餐廳",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "分店眾多請自行搜尋",
+      "streetAddress": "110台北市信義區松壽路12號6樓",
       "addressLocality": "台北市",
       "addressRegion": "信義區",
       "addressCountry": "TW"
     },
-    "telephone": "",
+    "telephone": "0227220388",
     "url": "https:\/\/www.kiki1991.com\/main\/tw\/",
     "award": ["500盤 2024"],
     "sameAs": [
-      "https:\/\/www.google.com\/maps\/search\/KIKI\u002b%E9%A4%90%E5%BB%B3\/@24.5956446,120.7778131,10z\/data=!3m1!4b1?entry=ttu\u0026g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D",
+      "https:\/\/maps.app.goo.gl\/7Fnc7qH7bB7G37Xw8",
       "https:\/\/footinder.com.tw\/%e5%8f%b0%e5%8c%97%e5%b8%82%e4%bf%a1%e7%be%a9%e5%8d%80\/362203\/"
     ]
   }
@@ -258,15 +258,19 @@
             <div class="restaurant-info">
               
               <div class="restaurant-address">
-                <span class="info-item__text">📍分店眾多請自行搜尋</span>
+                <span class="info-item__text">📍110台北市信義區松壽路12號6樓</span>
               </div>
               
 
               
+              <div class="restaurant-phone">
+                <span class="info-item__text">📞0227220388</span>
+              </div>
+              
             </div>
             <div class="restaurant-actions">
               
-              <a href="https://www.google.com/maps/search/KIKI&#43;%E9%A4%90%E5%BB%B3/@24.5956446,120.7778131,10z/data=!3m1!4b1?entry=ttu&amp;g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-primary">
+              <a href="https://maps.app.goo.gl/7Fnc7qH7bB7G37Xw8" target="_blank" class="btn btn-primary">
                 Google 地圖
               </a>
               
@@ -616,7 +620,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     
-    const geoStr = '';
+    const geoStr = '25.03547347332171, 121.56607003310049';
     if (!geoStr) return;
 
     const { lat: shopLat, lng: shopLng } = parseGeo(geoStr);
@@ -639,7 +643,7 @@
   });
 
   function updateDistance(newLat, newLng) {
-    const geoStr = '';
+    const geoStr = '25.03547347332171, 121.56607003310049';
     const distanceElem = document.getElementById('restaurant-distance');
     if (!geoStr || geoStr.trim() === "") {
       
