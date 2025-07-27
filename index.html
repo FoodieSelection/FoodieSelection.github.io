@@ -283,7 +283,7 @@
     fetch('/data/city_awards.json').then(r => r.json())
   ]).then(([districtData, awardData]) => {
     
-    const initialCity = "";
+    const initialCity = "所有城市";
     const initialDistrict = "";
     const initialAward = "";
 
@@ -424,18 +424,6 @@
       if (initialYear) {
         yearButton.textContent = initialYear;
       }
-
-      
-      yearDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          yearButton.textContent = e.target.textContent;
-          yearDropdown.style.display = 'none';
-
-          
-          yearButton.textContent = '所有年份';
-          yearDropdown.innerHTML = '';
-        }
-      });
 
       
       yearDropdown.addEventListener('click', function (e) {

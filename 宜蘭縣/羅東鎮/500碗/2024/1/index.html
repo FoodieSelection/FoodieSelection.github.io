@@ -891,18 +891,6 @@
       yearDropdown.addEventListener('click', function (e) {
         if (e.target.classList.contains('option')) {
           yearButton.textContent = e.target.textContent;
-          yearDropdown.style.display = 'none';
-
-          
-          yearButton.textContent = '所有年份';
-          yearDropdown.innerHTML = '';
-        }
-      });
-
-      
-      yearDropdown.addEventListener('click', function (e) {
-        if (e.target.classList.contains('option')) {
-          yearButton.textContent = e.target.textContent;
           this.style.display = 'none';
         }
       });
